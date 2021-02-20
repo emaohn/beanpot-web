@@ -15,6 +15,8 @@ var firebaseConfig = {
 export default class Firebase {
     constructor() {
         app.initializeApp(firebaseConfig);
+        this.db = firebase.firestore();
+        this.auth = firebase.auth();
     }
 }
 
