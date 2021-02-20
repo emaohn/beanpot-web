@@ -11,6 +11,16 @@ import {
 } from "@react-firebase/auth";
 import React from 'react'
 
+var config = {
+  apiKey: "AIzaSyDyMVuTZG5O-L_wWF_zFCuUfZVeX-m2eXY",
+  authDomain: "hackbeanpot-roomie-app.firebaseapp.com",
+  projectId: "hackbeanpot-roomie-app",
+  storageBucket: "hackbeanpot-roomie-app.appspot.com",
+  messagingSenderId: "998032024340",
+  appId: "1:998032024340:web:cdbc8e12da9f7855011801",
+  measurementId: "G-EHH1EP9JQV"
+};
+
 function App() {
   const ref = firebase.firestore().collection("users")
 
@@ -28,12 +38,31 @@ function App() {
   return (
 
       <div className="App">
-        <FirebaseAuthProvider firebase={firebase} {...config}>
-          {
-            // my app code
-          }
-        </FirebaseAuthProvider>
-
+        <FirebaseAuthProvider {...config} firebase={firebase}>
+      <div>
+        <button
+          onClick={() => {
+            const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithPopup(googleAuthProvider);
+          }}
+        >
+          Sign In with Google
+        </button>
+        <button
+          data-testid="signin-anon"
+          onClick={() => {
+            firebase.auth().signInAnonymously();
+          }}
+        >
+          Sign In Anonymously
+        </button>
+        <button
+          onClick={() => {
+            firebase.auth().signOut();
+          }}
+        >
+          Sign Out
+        </button>
         <FirebaseAuthConsumer>
           {({ isSignedIn, user, providerId }) => {
             return (
@@ -43,22 +72,22 @@ function App() {
             );
           }}
         </FirebaseAuthConsumer>
-
-        <IfFirebaseAuthedAnd
-          filter={({ providerId, user }) => {
-            if(!user.email){return false;}
-            return (
-              providerId !== "anonymous" &&
-              user.email.indexOf("@companyname.com") > -1
-            );
-          }}
+        <div>
+          <IfFirebaseAuthed>
+            {() => {
+              return <div>You are authenticated</div>;
+            }}
+          </IfFirebaseAuthed>
+          <IfFirebaseAuthedAnd
+            filter={({ providerId }) => providerId !== "anonymous"}
           >
-          {({ isSignedIn, user, providerId }) => {
-            return (
-              <div> Hello </div>
-            );
-          }}
-        </IfFirebaseAuthedAnd>
+            {({ providerId }) => {
+              return <div>You are authenticated with {providerId}</div>;
+            }}
+          </IfFirebaseAuthedAnd>
+        </div>
+      </div>
+    </FirebaseAuthProvider>
       </div>
 
     
