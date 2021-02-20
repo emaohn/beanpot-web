@@ -1,4 +1,4 @@
-import app from "firebase/app"
+import firebase from "firebase/app"
 import 'firebase/auth';
 import 'firebase/firestore';
 
@@ -12,11 +12,6 @@ var firebaseConfig = {
     measurementId: "G-EHH1EP9JQV"
 };
 
-export default class Firebase {
-    constructor() {
-        app.initializeApp(firebaseConfig);
-        this.db = firebase.firestore();
-        this.auth = firebase.auth();
-    }
-}
+firebase.initializeApp(firebaseConfig);
 
+export default firebase;
