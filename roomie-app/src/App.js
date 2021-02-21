@@ -24,17 +24,17 @@ var config = {
 };
 
 function App() {
-  let FirebaseHelper = new FirebaseFunctions();
+  // let FirebaseHelper = new FirebaseFunctions();
 
-  FirebaseHelper.getUser(FirebaseHelper.USER_ID).then(user => {
-    console.log(user)
-    FirebaseHelper.getHouse(user.houseRef).then(house => {
-      console.log("this is the house")
-      console.log(house)
-    })
+  // FirebaseHelper.getUser(FirebaseHelper.USER_ID).then(user => {
+  //   console.log(user)
+  //   FirebaseHelper.getHouse(user.houseRef).then(house => {
+  //     console.log("this is the house")
+  //     console.log(house)
+  //   })
 
-    FirebaseHelper.addResident(user.houseRef, 'users/NnS4f0DkRzKeIUNCfc5j"')
-  })
+  //   FirebaseHelper.addResident(user.houseRef, 'users/NnS4f0DkRzKeIUNCfc5j"')
+  // })
 
   return (
     <div className="App">
