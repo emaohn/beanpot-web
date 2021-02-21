@@ -46,12 +46,39 @@ export default class FirebaseFunctions {
         return houseRef.update({expenses: firebase.firestore.FieldValue.arrayUnion(transaction)})
     }
 
+    editTransaction = (houseRef, oldTrans, newTrans) => {
+        return new Promise(resolve => {
+            houseRef.update({ expenses: firebase.firestore.FieldValue.arrayRemove(oldTrans) })
+                .then(() => {
+                    houseRef.update({ expenses: firebase.firestore.FieldValue.arrayUnion(newTrans)})
+                })
+        })
+    }
+
     addBill = (houseRef, bill) => {
         return houseRef.update({monthly_bills: firebase.firestore.FieldValue.arrayUnion(bill)})
     }
 
+    editBill = (houseRef, oldBills, newBills) => {
+        return new Promise(resolve => {
+            houseRef.update({ bills: firebase.firestore.FieldValue.arrayRemove(oldBills) })
+                .then(() => {
+                    houseRef.update({ bills: firebase.firestore.FieldValue.arrayUnion(newBills)})
+                })
+        })
+    }
+
     addChore = (houseRef, chore) => {
         return houseRef.update({chores: firebase.firestore.FieldValue.arrayUnion(chore)})
+    }
+
+    editChore = (houseRef, oldChores, newChores) => {
+        return new Promise(resolve => {
+            houseRef.update({ chores: firebase.firestore.FieldValue.arrayRemove(oldChores) })
+                .then(() => {
+                    houseRef.update({ chores: firebase.firestore.FieldValue.arrayUnion(newChores)})
+                })
+        })
     }
 }
 
