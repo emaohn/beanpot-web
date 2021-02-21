@@ -53,7 +53,7 @@ export default class Dashboard extends React.Component {
             } else if (trans.people_left.length() > 0 && trans.creditors === this.state.user_ref) {
                 acc.toRecieve.push(trans)
             }
-        }, {toPay: [], toRecieve: []})
+        }, { toPay: [], toRecieve: [] })
     }
 
     getAllUserTransactions = () => {
@@ -63,7 +63,7 @@ export default class Dashboard extends React.Component {
             } else if (trans.creditors === this.state.user_ref) {
                 acc.toRecieve.push(trans)
             }
-        }, {toPay: [], toRecieve: []})
+        }, { toPay: [], toRecieve: [] })
     }
 
     addResident = (userRef) => {
@@ -73,21 +73,21 @@ export default class Dashboard extends React.Component {
 
     addTransaction = (trans) => {
         this.FirebaseHelper.addTransaction(this.state.house_ref, trans)
-        this.setState({ transactions: this.state.transactions.concat([trans])})
+        this.setState({ transactions: this.state.transactions.concat([trans]) })
     }
 
     addBill = (bill) => {
         this.FirebaseHelper.addBill(this.state.house_ref, bill)
-        this.setState({ bills: this.state.bills.concat(bills) })
+        this.setState({ bills: this.state.bills.concat(bill) })
     }
 
     addChore = (chore) => {
         this.FirebaseHelper.addChore(this.state.house_ref, chore)
-        this.setState({ chores: this.state.chores.concat([chore])})
+        this.setState({ chores: this.state.chores.concat([chore]) })
     }
 
     deleteChore = (chore) => {
-        this.setState({ chores: this.state.chores.filter(c => c.name === chore.name)})
+        this.setState({ chores: this.state.chores.filter(c => c.name === chore.name) })
     }
 
     deleteBill = (bill) => {
@@ -103,13 +103,17 @@ export default class Dashboard extends React.Component {
         return (
             <Box p={5}>
                 <Grid container direction="column" alignItems="flex-start">
-                    <Grid item>
-                        <Box>
-                            <Typography variant="h2" gutterBottom>Hello, Emmie</Typography>
-                        </Box>
+                    <Grid item container direction="column" alignItems="flex-start">
+                        <Typography variant="h2" gutterBottom>Hello, Emmie</Typography>
+                        <Typography variant="h4" gutterBottom>{this.state.house_name}</Typography>
                     </Grid>
                     <Grid container item direction="row" alignItems="center">
-                        <MonthlyBill />
+                        <Grid item>
+                            {/* transaction component */}
+                        </Grid>
+                        <Grid item>
+                            <MonthlyBill />
+                        </Grid>
                     </Grid>
                 </Grid>
             </Box>
