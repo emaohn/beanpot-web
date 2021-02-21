@@ -12,13 +12,13 @@ import FirebaseFunctions from './firebase/firebaseHelper'
 import Dashboard from './components/Dashboard'
 
 import React, { useContext } from "react";
-import { Router } from "@reach/router";
-import SignIn from "./Components/SignIn";
-import SignUp from "./Components/SignUp";
-import Application from "./Components/Application";
-import UserProvider from "./providers/UserProvider";
-import ProfilePage from "./Components/ProfilePage";
-import { UserContext } from "./providers/UserProvider";
+// import { Router } from "@reach/router";
+// import SignIn from "./Components/SignIn";
+// import SignUp from "./Components/SignUp";
+// import Application from "./Components/Application";
+// import UserProvider from "./providers/UserProvider";
+// import ProfilePage from "./Components/ProfilePage";
+// import { UserContext } from "./providers/UserProvider";
 
 var config = {
   apiKey: "AIzaSyDyMVuTZG5O-L_wWF_zFCuUfZVeX-m2eXY",
@@ -42,9 +42,10 @@ function App() {
   //   FirebaseHelper.addResident(user.houseRef, 'users/NnS4f0DkRzKeIUNCfc5j"')
   // })
   return (
-    <UserProvider>
-      <Application />
-    </UserProvider>
+    <Dashboard />
+    // <UserProvider>
+    //   <Application />
+    // </UserProvider>
   );
 }
 
