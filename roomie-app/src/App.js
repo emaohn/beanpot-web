@@ -1,8 +1,15 @@
 import './App.css';
 // import { FirebaseContext } from './firebase'
 import firebase from './firebase/firebase'
-
-
+import "firebase/auth";
+import {
+  FirebaseAuthProvider,
+  FirebaseAuthConsumer,
+  IfFirebaseAuthed,
+  IfFirebaseAuthedAnd
+} from "@react-firebase/auth";
+import FirebaseFunctions from './firebase/firebaseHelper'
+import Dashboard from './components/Dashboard'
 import React, { useContext } from "react";
 import { Router } from "@reach/router";
 import SignIn from "./Components/SignIn";
@@ -23,8 +30,6 @@ var config = {
 };
 
 function App() {
-  const ref = firebase.firestore().collection("users")
-
   return (
     <UserProvider>
       <Application />
