@@ -10,6 +10,7 @@ import {
   IfFirebaseAuthedAnd
 } from "@react-firebase/auth";
 import React from 'react'
+import FirebaseFunctions from './firebase/firebaseHelper'
 
 var config = {
   apiKey: "AIzaSyDyMVuTZG5O-L_wWF_zFCuUfZVeX-m2eXY",
@@ -22,21 +23,19 @@ var config = {
 };
 
 function App() {
-  const ref = firebase.firestore().collection("users")
+  let FirebaseHelper = new FirebaseFunctions();
 
-  ref.onSnapshot((querySnapshot) => {
-    const users = []
-    querySnapshot.forEach((doc) => {
-      users.push(doc.data())
-
-      doc.data().house[0].get().then(data => {
-        console.log(data.data())
-      })
+  FirebaseHelper.getUser(FirebaseHelper.USER_ID).then(user => {
+    console.log(user)
+    FirebaseHelper.getHouse(user.houseRef).then(house => {
+      console.log("this is the house")
+      console.log(house)
     })
+
+    FirebaseHelper.addResident(user.houseRef, 'users/NnS4f0DkRzKeIUNCfc5j"')
   })
 
   return (
-
       <div className="App">
         <FirebaseAuthProvider {...config} firebase={firebase}>
       <div>
