@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, Box, Typography } from '@material-ui/core'
 import MonthlyBill from './MonthlyBills'
+import Transactions from './Transactions'
 import FirebaseFunctions from '../firebase/firebaseHelper';
 
 export default class Dashboard extends React.Component {
@@ -108,11 +109,15 @@ export default class Dashboard extends React.Component {
                         <Typography variant="h4" gutterBottom>{this.state.house_name}</Typography>
                     </Grid>
                     <Grid container item direction="row" alignItems="center">
-                        <Grid item>
-                            {/* transaction component */}
+                        <Grid item xs={6}>
+                            <Box p={3}>
+                                <Transactions transactions={this.state.transactions} />
+                            </Box>
                         </Grid>
-                        <Grid item>
-                            <MonthlyBill />
+                        <Grid item xs={6}>
+                            <Box p={3}>
+                                <MonthlyBill />
+                            </Box>
                         </Grid>
                     </Grid>
                 </Grid>
